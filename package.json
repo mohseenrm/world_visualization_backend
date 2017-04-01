@@ -1,0 +1,26 @@
+{
+  "name": "world_visualization_backend",
+  "version": "1.0.0",
+  "description": "yada",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run:server": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohseenrm/world_visualization_backend.git"
+  },
+  "keywords": [
+    "visualization"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mohseenrm/world_visualization_backend/issues"
+  },
+  "homepage": "https://github.com/mohseenrm/world_visualization_backend#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
