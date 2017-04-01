@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/mohseenrm/world_visualization_backend#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "yargs": "^7.0.2"
   }
 }

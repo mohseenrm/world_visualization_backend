@@ -1,7 +1,11 @@
 var http = require('http'),
 	url = require('url'),
 	fs = require('fs'),
-	path = require('path');
+	path = require('path'),
+	argv = require('yargs').argv;
+
+//set connection with postgres
+//based on post request handle, generate JSON and emit to client
 
 var server = http.createServer(function (request, response) {
 	var relpath = url.parse(request.url).pathname;
@@ -34,4 +38,10 @@ var server = http.createServer(function (request, response) {
 	}
 
 });
-server.listen(8001);
+var port = 8001;
+if (argv.port >= 8000 && argv.port !== undefined)
+	port = argv.port;
+
+
+console.log('Server Listening on port: ' + argv.port);
+server.listen(port);
