@@ -4,7 +4,7 @@
   "description": "yada",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/mocha/bin/mocha",
     "run:server": "node index.js --port=9001"
   },
   "repository": {
@@ -24,5 +24,9 @@
     "express": "^4.15.2",
     "pg": "^6.1.5",
     "yargs": "^7.0.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }
