@@ -6,6 +6,7 @@ var http = require('http'),
 
 //set connection with postgres
 //based on post request handle, generate JSON and emit to client
+//convert json
 
 var server = http.createServer(function (request, response) {
 	var relpath = url.parse(request.url).pathname;
