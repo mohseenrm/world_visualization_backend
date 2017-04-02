@@ -12,14 +12,16 @@ const pool = require(path.join(__dirname, 'db', 'poolHandler'));
 // console.log(`path: ${__dirname}`);
 var server = http.createServer(function (request, response) {
 	var relpath = url.parse(request.url).pathname;
+	console.log(relpath);
 
-	switch(path){
+	switch(relpath){
 		case '/':
+			console.log('hit root');
 			response.writeHead(200, {'Content-Type': 'text/html'});
 			response.write('hello world');
 			response.end();
 			break;
-		case 'index.html':
+		case '/index.html':
 			fs.readFile(path.join(__dirname, relpath), function(error, data){
 				if(error){
 					response.writeHead(404);
@@ -33,14 +35,15 @@ var server = http.createServer(function (request, response) {
 				}
 			});
 			break;
-		case 'query':
+		case '/query.html':
+			console.log('hit query');
 			pool.connect((err, client, done) => {
 				if(err)
 					return(console.log(`Error fethching client from pool ${err}`));
 				
 				client.query(
-					"SELECT countryname, year, gdp_local, gdp_us, reserves, externaldept, fdi, trade, inflation, marketcapitalization, centralgovdept, gini, povertygap, employmentratio, populationgrowth, internationalmigrant, fsi FROM public.pivot_indicators LIMIT 1",
-					['1'], (err, result) => {
+					"SELECT countryname, year, gdp_local FROM pivot_indicators LIMIT 1", (err, result) => {
+						done(err);
 						if(err)
 							console.log(`error running query ${err}`);
 						console.log(result);
