@@ -40,7 +40,7 @@ var server = http.createServer(function (request, response) {
 			pool.connect((err, client, done) => {
 				if(err)
 					return(console.log(`Error fethching client from pool ${err}`));
-				//test
+				
 				client.query(
 					"SELECT countryname, year, gdp_local FROM pivot_indicators LIMIT 1", (err, result) => {
 						done(err);
