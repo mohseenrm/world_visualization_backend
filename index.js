@@ -46,7 +46,7 @@ var server = http.createServer(function (request, response) {
 						done(err);
 						if(err)
 							console.log(`error running query ${err}`);
-						console.log(result);
+						console.log(result.rows[0]);
 					});
 			});
 			break;
