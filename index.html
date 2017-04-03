@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<title>Arizona County Choropleth map</title>
+		<link rel="stylesheets" type="text/css" href="mapbox.css" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+		<link rel="stylesheet" href="mapindex.css">
+
+		<img src="world.svg" alt="Kiwi standing on oval">
+	</head>
+	<body>
+		<div id="map">
+
+			<div class="slider">
+				<!--<p class="budget">Select The Year?</p>-->
+				<label for="range">
+					<input type="range" name="range" id="range" min="1961" max="2016" step="4" value="175"/>
+				</label>
+				<output for="range" class="output"></output>
+			</div>
+
+
+		</div>
+
+
+		<div class="wrap">
+			<div class="block">
+				<span>Population</span>
+				<input data-index="0" id="cheap" type="checkbox" checked />
+				<label for="cheap"></label>
+			</div>
+			<div class="block">
+				<span>GDP</span>
+				<input data-index="1" id="fast" type="checkbox" />
+				<label for="fast"></label>
+			</div>
+			<div class="block">
+				<span>quality</span>
+				<input data-index="2" id="quality" type="checkbox" />
+				<label for="quality"></label>
+			</div>
+		</div>
+
+
+
+		<input type="checkbox" id="sidebartoggler"></input>
+
+		<div class="page-wrap">
+
+			<div class="page-content"></div>
+
+			<label for="sidebartoggler" class="toggle">☰</label>
+
+			<div class="sidebar">
+				<ul>
+					<li>Home</li>
+					<li>Description</li>
+					<li>About</li>
+					<li>Contact</li>
+
+				</ul>
+
+			</div>
+		</div>
+
+
+		<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+		<script src="jquery.min.js"></script>
+		<script src="classybrew.min.js"></script>
+		<script src="mapslider.js"></script>
+	</body>
+</html>
