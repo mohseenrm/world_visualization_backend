@@ -9,7 +9,7 @@ const config = {
 	max: 10,
 	idleTimeoutMillis: 30000
 };
-
+//test
 const pool = new pg.Pool(config);
 
 pool.on('error', (err, client) => {
