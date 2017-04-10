@@ -20,7 +20,7 @@ const config = {
 	idleTimeoutMillis: 30000,
 	ssl: true
 };
-
+//test
 const pool = new pg.Pool(config);
 
 pool.on('error', (err, client) => {
