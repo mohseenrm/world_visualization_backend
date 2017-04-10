@@ -18,8 +18,11 @@ var server = http.createServer(function (request, response) {
 	switch(relpath){
 		case '/':
 			console.log('hit root');
-			response.writeHead(200, {'Content-Type': 'text/html'});
-			response.write('hello world');
+			// console.log( `request: ${request}` );
+			console.log( `request: ${Object.keys(request)}` );
+			console.log( `request: ${Object.keys(request.rawHeaders)}` );
+			// response.writeHead(200, {'Content-Type': 'text/html'});
+			// response.write('hello world');
 			response.end();
 			break;
 		case '/index.html':
@@ -41,18 +44,24 @@ var server = http.createServer(function (request, response) {
 			pool.connect((err, client, done) => {
 				if(err)
 					return(console.log(`Error fethching client from pool ${err}`));
+				
 
-				client.query(
-					"select countryname, year, gdp_us from pivot_indicators  where year = $1::int order by gdp_us", ['1991'], (err, result) => {
-						done(err);
+				for( i = 1970; i < 2015; i++ ){
+					client.query(
+						"select countryname, year, inflation from pivot_indicators  where year = $1::int order by inflation", [i], (err, result) => {
+							done(err);
 
-						if(err)
-							console.log(`error running query ${err}`);
+							if(err)
+								console.log(`error running query ${err}`);
 
-						console.log(result.rows[0]);
-						colorHandler.updateColors( result.rows );
-					});
+							console.log(result.rows[0]);
+							colorHandler.updateColors( result.rows );
+						});
+				}
 			});
+			break;
+		case '/main':
+			
 			break;
 		default:
 			response.writeHead(404);

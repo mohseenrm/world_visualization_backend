@@ -8,14 +8,14 @@ const pool = require( './poolHandler' ),
 let brew = new classyBrew();
 
 const init = ( data ) => {
-	const gdp_data = _.map( data, 'gdp_us' );
-	console.log( `Got data: ${gdp_data}` );
+	const gdp_data = _.map( data, 'inflation' );
+	// console.log( `Got data: ${gdp_data}` );
 
 	brew.setSeries( gdp_data );
 	brew.setNumClasses( 7 );
 	brew.setColorCode( 'GnBu' );
 	brew.classify( 'jenks' );
-	console.log(`End of Init: brew: ${brew}`);
+	// console.log(`End of Init: brew: ${brew}`);
 };
 
 const updateColors = ( data ) => {
@@ -43,9 +43,9 @@ const updateQuery = ( row ) => {
 	pool.connect( ( err, client, done ) => {
 		if( err )
 			return( console.log( `Error fethching client from pool ${err}` ) );
-
+		// console.log(`Working Countryname: ${row.countryname} | Year: ${row.year}`);
 		client.query(
-			"update pivot_indicators set gdp_us_color = $3::text where countryname = $1::text and year = $2::int ", [row.countryname, row.year, `#${ rgbHex( brew.getColorInRange( row.gdp_us ) )}`], ( err, result ) => {
+			"update pivot_indicators set inflation_color = $3::text where countryname = $1::text and year = $2::int ", [row.countryname, row.year, `#${ rgbHex( brew.getColorInRange( row.inflation ) )}`], ( err, result ) => {
 				done( err );
 
 				if( err )
