@@ -21,12 +21,14 @@
   },
   "homepage": "https://github.com/mohseenrm/world_visualization_backend#readme",
   "dependencies": {
+    "colorbrewer": "^1.0.0",
     "express": "^4.15.2",
     "pg": "^6.1.5",
     "yargs": "^7.0.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "pg-parse-float": "0.0.1"
   }
 }

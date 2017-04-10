@@ -4,7 +4,8 @@ const http = require('http'),
 	path = require('path'),
 	argv = require('yargs').argv;
 
-const pool = require(path.join(__dirname, 'db', 'poolHandler'));
+const pool = require(path.join(__dirname, 'db', 'poolHandler')),
+	colorHandler = require( path.join( __dirname, 'db', 'colorHandler' ) );
 
 //set connection with postgres
 //based on post request handle, generate JSON and emit to client
@@ -40,13 +41,16 @@ var server = http.createServer(function (request, response) {
 			pool.connect((err, client, done) => {
 				if(err)
 					return(console.log(`Error fethching client from pool ${err}`));
-				
+
 				client.query(
-					"SELECT countryname, year, gdp_local FROM pivot_indicators LIMIT 1", (err, result) => {
+					"select countryname, year, gdp_us from pivot_indicators  where year = $1::int order by gdp_us", ['1991'], (err, result) => {
 						done(err);
+
 						if(err)
 							console.log(`error running query ${err}`);
-						console.log(result.rows[0]);
+
+						console.log(result.rows);
+						// colorHandler( result.rows );
 					});
 			});
 			break;

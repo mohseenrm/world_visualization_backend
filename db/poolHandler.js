@@ -1,4 +1,5 @@
 const pg = require('pg');
+require( 'pg-parse-float' )( pg );
 
 // const config = {
 // 	user: 'postgres',
