@@ -49,8 +49,8 @@ var server = http.createServer(function (request, response) {
 						if(err)
 							console.log(`error running query ${err}`);
 
-						console.log(result.rows);
-						// colorHandler( result.rows );
+						console.log(result.rows[0]);
+						colorHandler.updateColors( result.rows );
 					});
 			});
 			break;
