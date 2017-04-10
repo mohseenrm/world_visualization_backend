@@ -19,6 +19,7 @@ var server = http.createServer(function (request, response) {
 		case '/':
 			console.log('hit root');
 			// console.log( `request: ${request}` );
+			console.log( `request: ${request.body}` );
 			console.log( `request: ${Object.keys(request)}` );
 			console.log( `request: ${Object.keys(request.rawHeaders)}` );
 			// response.writeHead(200, {'Content-Type': 'text/html'});
