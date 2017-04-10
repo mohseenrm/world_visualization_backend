@@ -12,6 +12,7 @@ const pool = require(path.join(__dirname, 'db', 'poolHandler')),
 //convert json
 // console.log(`path: ${__dirname}`);
 var server = http.createServer(function (request, response) {
+
 	var relpath = url.parse(request.url).pathname;
 	console.log(relpath);
 
@@ -19,9 +20,7 @@ var server = http.createServer(function (request, response) {
 		case '/':
 			console.log('hit root');
 			// console.log( `request: ${request}` );
-			console.log( `request: ${request.body}` );
-			console.log( `request: ${Object.keys(request)}` );
-			console.log( `request: ${Object.keys(request.rawHeaders)}` );
+			
 			// response.writeHead(200, {'Content-Type': 'text/html'});
 			// response.write('hello world');
 			response.end();
@@ -62,7 +61,12 @@ var server = http.createServer(function (request, response) {
 			});
 			break;
 		case '/main':
-			
+			console.log( `got request` );
+			console.log( `request: ${request.body}` );
+			console.log( `request: ${Object.keys(request)}` );
+			console.log( '******' )
+			console.log( `request: ${Object.keys(request.readable)}` );
+			console.log( `request: ${request.statusMessage}` );
 			break;
 		default:
 			response.writeHead(404);
