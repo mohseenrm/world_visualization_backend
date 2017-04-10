@@ -1,7 +1,8 @@
 // const classyBrew = require( './classyBrew' ),
-const classyBrew = require( './classyBrew' );
+const classyBrew = require( './classyBrew' ),
+	rgbHex = require( 'rgb-hex' );
 
-const poolHandler = require( './poolHandler' ),
+const pool = require( './poolHandler' ),
 	_ = require( 'lodash' );
 
 let brew = new classyBrew();
@@ -25,10 +26,11 @@ const updateColors = ( data ) => {
 
 	const breaks = brew.getBreaks(),
 			colors = brew.getColors();
-	// const color = brew.getColorInRange( data[i] );
+
 	const color = brew.getColorInRange( 173375508073.07 );
-	//map rgbHex
-	console.log( `color : ${color}` );
+
+	// console.log( `CN: ${data[0].countryname} | YR: ${data[0].year} | color: #${ rgbHex( brew.getColorInRange( data[0].gdp_us ) ) }` );
+	_.forEach( data, updateQuery );
 	// //for each year
 	// { 
 	// 	country: x,
@@ -43,13 +45,13 @@ const updateQuery = ( row ) => {
 			return( console.log( `Error fethching client from pool ${err}` ) );
 
 		client.query(
-			"select countryname, year, gdp_us from pivot_indicators  where year = $1::int order by gdp_us", ['1991'], ( err, result ) => {
+			"update pivot_indicators set gdp_us_color = $3::text where countryname = $1::text and year = $2::int ", [row.countryname, row.year, `#${ rgbHex( brew.getColorInRange( row.gdp_us ) )}`], ( err, result ) => {
 				done( err );
 
 				if( err )
 					console.log( `error running query ${err}` );
 
-				console.log( result.rows[0] );
+				// console.log( result.rows[0] );
 			});
 	});
 };
