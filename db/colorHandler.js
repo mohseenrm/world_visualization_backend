@@ -4,9 +4,9 @@ const classyBrew = require( './classyBrew' );
 const poolHandler = require( './poolHandler' ),
 	_ = require( 'lodash' );
 
-const init = ( data, brew ) => {
-	
+let brew = new classyBrew();
 
+const init = ( data ) => {
 	const gdp_data = _.map( data, 'gdp_us' );
 	console.log( `Got data: ${gdp_data}` );
 
@@ -19,9 +19,9 @@ const init = ( data, brew ) => {
 
 const updateColors = ( data ) => {
 	// console.log( `classyBrew: ${classyBrew}` );
-	let brew = new classyBrew();
+	
 	// console.log( `brew: ${brew}` );
-	init( data, brew );
+	init( data );
 
 	const breaks = brew.getBreaks(),
 			colors = brew.getColors();
@@ -35,6 +35,23 @@ const updateColors = ( data ) => {
 		// year: 1991,
 	// 	gdp_us_color: '#xxx'
 	// }
+};
+
+const updateQuery = ( row ) => {
+	pool.connect( ( err, client, done ) => {
+		if( err )
+			return( console.log( `Error fethching client from pool ${err}` ) );
+
+		client.query(
+			"select countryname, year, gdp_us from pivot_indicators  where year = $1::int order by gdp_us", ['1991'], ( err, result ) => {
+				done( err );
+
+				if( err )
+					console.log( `error running query ${err}` );
+
+				console.log( result.rows[0] );
+			});
+	});
 };
 
 module.exports.updateColors = updateColors;
