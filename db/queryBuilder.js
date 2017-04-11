@@ -1,5 +1,5 @@
 const queryBuilder = ( filters ) => {
-	return `select countryname, ${getColumn( filters.filter )}, countrycode, ${getColumn( filters.filter )}_color from pivot_indicators where year = ${filters.year} order by ${getColumn( filters.filter )}`;
+	return `select countryname, ${getColumn( filters.filter )}, countrycode, ${getColumn( filters.filter )}_color as color from pivot_indicators where year = ${filters.year} order by ${getColumn( filters.filter )}`;
 };
 
 const getColumn = ( field ) => {

@@ -41,20 +41,20 @@ describe('queryHandler test suite', () => {
 			filter: 'TRA'
 		};
 
-		expect( queryBuilder( case1 ) ).to.be.equal( 'select countryname, gdp_us, countrycode, gdp_us_color from pivot_indicators where year = 2001 order by gdp_us' );
+		expect( queryBuilder( case1 ) ).to.be.equal( 'select countryname, gdp_us, countrycode, gdp_us_color as color from pivot_indicators where year = 2001 order by gdp_us' );
 
-		expect( queryBuilder( case2 ) ).to.be.equal( 'select countryname, fsi, countrycode, fsi_color from pivot_indicators where year = 1990 order by fsi' );
+		expect( queryBuilder( case2 ) ).to.be.equal( 'select countryname, fsi, countrycode, fsi_color as color from pivot_indicators where year = 1990 order by fsi' );
 
-		expect( queryBuilder( case3 ) ).to.be.equal( 'select countryname, inflation, countrycode, inflation_color from pivot_indicators where year = 1970 order by inflation' );
+		expect( queryBuilder( case3 ) ).to.be.equal( 'select countryname, inflation, countrycode, inflation_color as color from pivot_indicators where year = 1970 order by inflation' );
 
-		expect( queryBuilder( case4 ) ).to.be.equal( 'select countryname, populationgrowth, countrycode, populationgrowth_color from pivot_indicators where year = 2014 order by populationgrowth' );
+		expect( queryBuilder( case4 ) ).to.be.equal( 'select countryname, populationgrowth, countrycode, populationgrowth_color as color from pivot_indicators where year = 2014 order by populationgrowth' );
 
-		expect( queryBuilder( case5 ) ).to.be.equal( 'select countryname, employmentratio, countrycode, employmentratio_color from pivot_indicators where year = 2000 order by employmentratio' );
+		expect( queryBuilder( case5 ) ).to.be.equal( 'select countryname, employmentratio, countrycode, employmentratio_color as color from pivot_indicators where year = 2000 order by employmentratio' );
 
-		expect( queryBuilder( case6 ) ).to.be.equal( 'select countryname, reserves, countrycode, reserves_color from pivot_indicators where year = 1981 order by reserves' );
+		expect( queryBuilder( case6 ) ).to.be.equal( 'select countryname, reserves, countrycode, reserves_color as color from pivot_indicators where year = 1981 order by reserves' );
 
-		expect( queryBuilder( case7 ) ).to.be.equal( 'select countryname, fdi, countrycode, fdi_color from pivot_indicators where year = 1998 order by fdi' );
+		expect( queryBuilder( case7 ) ).to.be.equal( 'select countryname, fdi, countrycode, fdi_color as color from pivot_indicators where year = 1998 order by fdi' );
 
-		expect( queryBuilder( case8 ) ).to.be.equal( 'select countryname, trade, countrycode, trade_color from pivot_indicators where year = 1995 order by trade' );
+		expect( queryBuilder( case8 ) ).to.be.equal( 'select countryname, trade, countrycode, trade_color as color from pivot_indicators where year = 1995 order by trade' );
 	} );
 });
