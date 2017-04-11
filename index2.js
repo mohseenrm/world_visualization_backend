@@ -28,7 +28,7 @@ app.post( '/main', ( request, response ) => {
 
 		for( i = 1970; i < 2015; i++ ){
 			client.query(
-				"select countryname, year, inflation from pivot_indicators  where year = $1::int order by inflation", [i], (err, result) => {
+				"select countryname, year, inflation from pivot_indicators where year = $1::int order by inflation", [i], (err, result) => {
 					done(err);
 
 					if(err)
