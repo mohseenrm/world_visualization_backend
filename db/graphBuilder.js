@@ -1,5 +1,5 @@
 const graphBuilder = ( filters ) => {
-	return `select ${ getColumn( filters.filter ) } ,year from pivot_indicators where year >= ${ parseInt( filters.year ) - 5 } and year <= ${ parseInt( filters.year ) + 5 } and countrycode = ${ filters.countryc } order by year`;
+	return `select ${ getColumn( filters.filter ) } ,year from pivot_indicators where year >= ${ parseInt( filters.year ) - 5 } and year <= ${ parseInt( filters.year ) + 5 } and countrycode = '${ filters.countrycode }' order by year`;
 };
 
 const getColumn = ( field ) => {

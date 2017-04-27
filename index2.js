@@ -48,6 +48,7 @@ app.post( '/graph', ( request, response ) => {
 	pool.connect(( err, client, done ) => {
 		if( err )
 			return( console.log( `Error fethching client from pool ${err}` ) );
+		console.log( graphBuilder( request.body ) );
 		client.query( graphBuilder( request.body ), ( err, result ) => {
 				done( err );
 				if( err )
