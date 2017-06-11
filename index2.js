@@ -55,7 +55,6 @@ app.post( '/graph', ( request, response ) => {
 					console.log( `error running query ${err}` );
 
 				console.log( result.rows );
-
 				response.json( {
 					data: result.rows
 				} );
