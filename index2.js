@@ -16,8 +16,11 @@ app.use( bodyParser.json() );
 
 app.set( 'port', process.env.PORT || argv.port || 8080 );
 
+app.use( '/', express.static( __dirname ) );
+
 app.get( '/', ( request, response ) => {
-	response.send( 'hola' );
+	// response.send( 'hola' );
+	response.sendFile(path.join(__dirname + '/index.html'));
 } );
 
 app.post( '/main', ( request, response ) => {
