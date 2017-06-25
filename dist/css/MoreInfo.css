@@ -1,0 +1,11 @@
+body{
+    background-color:#24303A;
+    overflow:hidden;
+    text-align:center;
+}
+
+svg{
+    opacity:0;
+    width:80%;
+    height:80%;
+}

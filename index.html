@@ -1,0 +1,216 @@
+<!DOCTYPE>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>World Visualization</title>
+
+    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
+    <!-- plus a jQuery UI theme, here I use "flick" -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+    <link rel="stylesheet" href="dist/css/jquery-ui-slider-pips.css">
+    <script src="dist/js/jquery-ui-slider-pips.js"></script>
+
+    <link rel="stylesheets" type="text/css" href="dist/css/mapbox.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+
+    <link rel="stylesheet" type="text/css" href="dist/css/main.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/mapindex.css">
+
+    <link rel="stylesheet" type="text/css" href="tooltipster/dist/css/tooltipster.bundle.min.css" />
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.tooltip').tooltipster({
+                theme: 'tooltipster-light'
+            });
+        });
+    </script>
+
+
+</head>
+
+<body>
+
+    <div class="outer" style="position: relative">
+
+        <div id="svgContainer"></div>
+        <!--<img class="world" src="images/world.svg" alt="Kiwi standing on oval"  />-->
+        <div class="wrapper">
+            <span class="title">1970</span>
+            <div class="slider-box">
+                <div class="slider tooltip"></div>
+            </div>
+        </div>
+
+        <!--<div class="slider" style="position: absolute;top :93%; left:35%;  "></div>-->
+        <input type="checkbox" id="sidebartoggler"></input>
+        <div class="page-wrap">
+            <div class="page-content"></div>
+            <label for="sidebartoggler" class="toggle">☰</label>
+            <div class="sidebar">
+                <!--<ul>
+                    <li><a href="index.html">Home</a> </li>
+                    <li><a href="Description.html">Description</a></li>
+                    <li><a href="About.html">About</a></li>
+                </ul>-->
+                <div class="wrap">
+                    <div class="block">
+                        <span class="filter-label">FSI</span>
+                        <input data-index="0" id="FSI" type="checkbox" checked />
+                        <label for="FSI"></label>
+                    </div>
+                    <div class="block">
+                        <span>GDP</span>
+                        <input data-index="1" id="GDP" type="checkbox" />
+                        <label for="GDP"></label>
+                    </div>
+                    <div class="block">
+                        <span>Inflation</span>
+                        <input data-index="2" id="Inf" type="checkbox" />
+                        <label for="Inf"></label>
+                    </div>
+                    <div class="block">
+                        <span>Trade</span>
+                        <input data-index="3" id="Trade" type="checkbox" />
+                        <label for="Trade"></label>
+                    </div>
+                    <div class="block">
+                        <span>Population</span>
+                        <input data-index="4" id="cheap" type="checkbox" />
+                        <label for="cheap"></label>
+                    </div>
+                    <div class="block">
+                        <span>Employement</span>
+                        <input data-index="5" id="Emp" type="checkbox" />
+                        <label for="Emp"></label>
+                    </div>
+                    <div class="block">
+                        <span>Reserve</span>
+                        <input data-index="6" id="Reserve" type="checkbox" />
+                        <label for="Reserve"></label>
+                    </div>
+                    <div class="block">
+                        <span>FDI</span>
+                        <input data-index="7" id="FDI" type="checkbox" />
+                        <label for="FDI"></label>
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="outer" style="position: relative">
+
+                <div id="svgContainer" class="tooltip"></div>
+
+
+                <div class="wrap" style="position: absolute;top : 30%;left :5%; ">
+                    <div class="block">
+                        <span>FSI</span>
+                        <input data-index="0" id="FSI" type="checkbox" checked />
+                        <label for="FSI"></label>
+                    </div>
+                    <div class="block">
+                        <span>GDP</span>
+                        <input data-index="1" id="GDP" type="checkbox" />
+                        <label for="GDP"></label>
+                    </div>
+                    <div class="block">
+                        <span>Inflation</span>
+                        <input data-index="2" id="Inf" type="checkbox" />
+                        <label for="Inf"></label>
+                    </div>
+                    <div class="block">
+                        <span>Trade</span>
+                        <input data-index="3" id="Trade" type="checkbox" />
+                        <label for="Trade"></label>
+                    </div>
+                    <div class="block">
+                        <span>Population Growth</span>
+                        <input data-index="4" id="cheap" type="checkbox" />
+                        <label for="cheap"></label>
+                    </div>
+                    <div class="block">
+                        <span>Employement</span>
+                        <input data-index="5" id="Emp" type="checkbox" />
+                        <label for="Emp"></label>
+                    </div>
+                    <div class="block">
+                        <span>Reserve</span>
+                        <input data-index="6" id="Reserve" type="checkbox" />
+                        <label for="Reserve"></label>
+                    </div>
+                    <div class="block">
+                        <span>FDI</span>
+                        <input data-index="7" id="FDI" type="checkbox" />
+                        <label for="FDI"></label>
+                    </div>
+                </div>
+
+
+                <input type="checkbox" id="sidebartoggler"></input>
+                <div class="page-wrap">
+                    <div class="page-content"></div>
+                    <label for="sidebartoggler" class="toggle">☰</label>
+                    <div class="sidebar">
+                        <ul>
+                            <li><a href="index.html">Home</a> </li>
+                            <li><a href="Description.html">Description</a></li>
+                            <li><a href="About.html">About</a></li>
+                        </ul>
+                    </div>
+                </div>
+-->
+            <!-- The Modal -->
+            <div id="year_modal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span>Major Incidents</span>
+                        <span id=" year_close" class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <p id="year_info" align="center|justify">This day that year</p>
+                    </div>
+                    <div class="modal-footer">
+                        <h3></h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="country_modal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span id="modal_country_name">Major </span>
+                        <span id="country_close" class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                       <!--<iframe id="more_info" src="MoreInfo.html?id=" width="100%" height="60%">more Info</iframe>-->
+                        <div id="chartContainer" style="height: 300px; width: 100%;">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <h3></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+        <script type="text/javascript" src="tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        <script src="dist/js/classybrew.min.js"></script>
+        <script src="dist/js/MoreInfo.js"></script>
+        <script src="dist/js/mapslider.js"></script>
+        <script src="dist/js/common.bundle.js"></script>
+</body>
+
+
+</html>
